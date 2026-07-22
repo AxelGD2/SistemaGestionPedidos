@@ -1,18 +1,17 @@
 is_global = true
 build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SistemaGestionPedidos
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\SistemaGestionPedidos\
-=======
 build_property.ProjectDir = C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\
->>>>>>> c4d5e68bfcda51b03d790a65c9d440de17f237e0
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 10.0

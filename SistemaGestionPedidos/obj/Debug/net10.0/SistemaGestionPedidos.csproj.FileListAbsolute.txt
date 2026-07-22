@@ -28,3 +28,18 @@ C:\Users\jonat\Desktop\Nueva carpeta\SistemaGestionPedidos\obj\Debug\net10.0\ref
 C:\Users\jonat\Desktop\Nueva carpeta\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.pdb
 C:\Users\jonat\Desktop\Nueva carpeta\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.genruntimeconfig.cache
 C:\Users\jonat\Desktop\Nueva carpeta\SistemaGestionPedidos\obj\Debug\net10.0\ref\SistemaGestionPedidos.dll
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.AssemblyInfoInputs.cache
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.AssemblyInfo.cs
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.csproj.CoreCompileInputs.cache
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.sourcelink.json
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.dll
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\refint\SistemaGestionPedidos.dll
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.pdb
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\bin\Debug\net10.0\SistemaGestionPedidos.exe
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\bin\Debug\net10.0\SistemaGestionPedidos.deps.json
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\bin\Debug\net10.0\SistemaGestionPedidos.runtimeconfig.json
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\bin\Debug\net10.0\SistemaGestionPedidos.dll
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\bin\Debug\net10.0\SistemaGestionPedidos.pdb
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.genruntimeconfig.cache
+C:\Users\rfere\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\ref\SistemaGestionPedidos.dll
