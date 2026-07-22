@@ -12,3 +12,4 @@ C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\Si
 C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.pdb
 C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.genruntimeconfig.cache
 C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\ref\SistemaGestionPedidos.dll
+C:\Users\ESTUDIANTE\Documents\ProyectosCASATIC\Modulo-4\SistemaGestionPedidos\SistemaGestionPedidos\obj\Debug\net10.0\SistemaGestionPedidos.sourcelink.json
