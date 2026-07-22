@@ -53,7 +53,7 @@ namespace SistemaGestionPedidos
                             break;
 
                         case 5:
-                            Console.WriteLine("\nOpción aún no implementada.");
+                            CambiarEstado(ref pedidos);
                             break;
 
                         case 6:
@@ -172,6 +172,73 @@ namespace SistemaGestionPedidos
             total -= CalcularTotalPedido(pedidoAEliminar);
             pedidos.Remove(pedidoAEliminar);
             Console.WriteLine($"\nPedido {codigo} eliminado correctamente.");
+        }
+
+        public static void CambiarEstado(ref List<Pedido> pedidos)
+        {
+            if (pedidos.Count == 0)
+            {
+                Console.WriteLine("\nNo hay pedidos registrados.");
+                return;
+            }
+
+            Console.Write("\nIngrese el código del pedido cuyo estado desea cambiar: ");
+            string codigo = (Console.ReadLine() ?? string.Empty).Trim();
+
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                Console.WriteLine("\nDebe ingresar un código de pedido.");
+                return;
+            }
+
+            var pedido = pedidos.FirstOrDefault(p => string.Equals(p.codigoPedido, codigo, StringComparison.OrdinalIgnoreCase));
+
+            if (pedido == null)
+            {
+                Console.WriteLine("\nPedido no encontrado.");
+                return;
+            }
+
+            string estadoActual = pedido.estadoPedido ?? "";
+            var permitidos = ObtenerTransicionesPermitidas(estadoActual);
+
+            if (permitidos.Count == 0)
+            {
+                Console.WriteLine($"\nNo es posible cambiar el estado desde '{estadoActual}'.");
+                return;
+            }
+
+            Console.WriteLine($"\nEstado actual: {estadoActual}");
+            Console.WriteLine("Estados permitidos para la transición:");
+            for (int i = 0; i < permitidos.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {permitidos[i]}");
+            }
+
+            Console.Write("\nEscoja el nuevo estado (número): ");
+            string entrada = Console.ReadLine() ?? string.Empty;
+            if (!int.TryParse(entrada.Trim(), out int seleccion) || seleccion < 1 || seleccion > permitidos.Count)
+            {
+                Console.WriteLine("\nSelección inválida.");
+                return;
+            }
+
+            string nuevoEstado = permitidos[seleccion - 1];
+            pedido.estadoPedido = nuevoEstado;
+            Console.WriteLine($"\nEstado del pedido {pedido.codigoPedido} cambiado a '{nuevoEstado}'.");
+        }
+
+        public static List<string> ObtenerTransicionesPermitidas(string estadoActual)
+        {
+            return estadoActual switch
+            {
+                "Pendiente" => new List<string> { "En preparación", "Cancelado" },
+                "En preparación" => new List<string> { "Enviado", "Cancelado" },
+                "Enviado" => new List<string> { "Entregado" },
+                "Entregado" => new List<string>(),
+                "Cancelado" => new List<string>(),
+                _ => new List<string>()
+            };
         }
 
         public static void FiltrarPedidos(List<Pedido> pedidos)
