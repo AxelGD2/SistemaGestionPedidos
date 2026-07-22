@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿﻿using System.IO;
 using System.Security.Cryptography;
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaGestionPedidos
 {
@@ -9,13 +13,14 @@ namespace SistemaGestionPedidos
         {
             bool menuCorriendo = true;
             List<Pedido> pedidos = new List<Pedido>();
+            double total = 0;
 
             while (menuCorriendo)
             {
                 Console.WriteLine("\n-------------------------------------------------------------------------------");
                 Console.WriteLine("SISTEMA DE GESTIÓN DE PEDIDOS");
                 Console.WriteLine("-------------------------------------------------------------------------------");
-                Console.WriteLine("1.Registrar pedido");
+                Console.WriteLine("1.Agregar pedido");
                 Console.WriteLine("2.Mostrar todos los pedidos");
                 Console.WriteLine("3.Buscar pedido");
                 Console.WriteLine("4.Modificar pedido");
@@ -50,15 +55,19 @@ namespace SistemaGestionPedidos
                             break;
 
                         case 5:
+                            Console.WriteLine("\nOpción aún no implementada.");
                             break;
 
                         case 6:
+                            EliminarPedido(ref pedidos, ref total);
                             break;
 
                         case 7:
+                            FiltrarPedidos(pedidos);
                             break;
 
                         case 8:
+                            Console.WriteLine("\nOpción aún no implementada.");
                             break;
 
                         case 9:
@@ -79,7 +88,6 @@ namespace SistemaGestionPedidos
                 {
                     Console.WriteLine("\nFormato no válido");
                 }
-
             }
         }
 
@@ -199,7 +207,7 @@ namespace SistemaGestionPedidos
             Console.WriteLine("\n-------------------------------------------------------------------------------");
             Console.WriteLine("LISTA DE PEDIDOS");
             Console.WriteLine("-------------------------------------------------------------------------------");
-            
+
             foreach (var pedido in pedidos)
             {
                 double subtotal = pedido.cantidad * pedido.precioUnitario;
@@ -278,12 +286,6 @@ namespace SistemaGestionPedidos
 
         public static void ModificarPedido(ref List<Pedido> pedidos)
         {
-            if (pedidos.Count == 0)
-            {
-                Console.WriteLine("\nNo hay pedidos registrados.");
-                return;
-            }
-
             Console.WriteLine("\n-------------------------------------------------------------------------------");
             Console.WriteLine("LISTA DE PEDIDOS");
             Console.WriteLine("-------------------------------------------------------------------------------");
@@ -504,6 +506,160 @@ namespace SistemaGestionPedidos
 
                 Console.WriteLine($"{pedido.codigoPedido} - {pedido.nombreCliente} - {total}");
             }
+        }
+
+        public static void EliminarPedido(ref List<Pedido> pedidos, ref double total)
+        {
+            if (pedidos.Count == 0)
+            {
+                Console.WriteLine("\nNo hay pedidos registrados.");
+                return;
+            }
+            Console.Write("\nIngrese el código del pedido a eliminar: ");
+            string codigo = (Console.ReadLine() ?? string.Empty).Trim();
+
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                Console.WriteLine("\nDebe ingresar un código de pedido.");
+                return;
+            }
+
+            Pedido? pedidoAEliminar = pedidos.FirstOrDefault(pedido =>
+                string.Equals(pedido.codigoPedido, codigo, StringComparison.OrdinalIgnoreCase));
+
+            if (pedidoAEliminar == null)
+            {
+                Console.WriteLine("\nPedido no encontrado.");
+                return;
+            }
+
+            total -= CalcularTotalPedido(pedidoAEliminar);
+            pedidos.Remove(pedidoAEliminar);
+            Console.WriteLine($"\nPedido {codigo} eliminado correctamente.");
+        }
+
+        public static void FiltrarPedidos(List<Pedido> pedidos)
+        {
+            if (pedidos.Count == 0)
+            {
+                Console.WriteLine("\nNo hay pedidos registrados.");
+                return;
+            }
+
+            Console.WriteLine("\nFiltrar pedidos por:");
+            Console.WriteLine("1. Estado");
+            Console.WriteLine("2. Cliente");
+            Console.WriteLine("3. Producto");
+            Console.WriteLine("4. Tipo de entrega");
+
+            Console.Write("\nEscoja un criterio: ");
+            int opcion = int.Parse((Console.ReadLine() ?? string.Empty).Trim());
+
+            List<Pedido> resultado = new List<Pedido>();
+
+            switch (opcion)
+            {
+                case 1:
+                    Console.WriteLine("\nEstados disponibles:");
+                    foreach (var estadoValor in Enum.GetValues<EstadoPedido>())
+                    {
+                        Console.WriteLine($"- {estadoValor}");
+                    }
+                    Console.Write("Ingrese el estado: ");
+                    string estadoEntrada = (Console.ReadLine() ?? string.Empty).Trim();
+
+                    if (!Enum.TryParse<EstadoPedido>(estadoEntrada, ignoreCase: true, out var estadoEnum))
+                    {
+                        Console.WriteLine("\nEstado no válido.");
+                        return;
+                    }
+
+                    resultado = pedidos.Where(p => p.estadoPedido == estadoEnum).ToList();
+                    break;
+
+                case 2:
+                    Console.Write("Ingrese el nombre del cliente: ");
+                    string cliente = (Console.ReadLine() ?? string.Empty).Trim();
+                    resultado = pedidos.Where(p => string.Equals(p.nombreCliente, cliente, StringComparison.OrdinalIgnoreCase)).ToList();
+                    break;
+
+                case 3:
+                    Console.Write("Ingrese el producto: ");
+                    string producto = (Console.ReadLine() ?? string.Empty).Trim();
+                    resultado = pedidos.Where(p => string.Equals(p.productoSolicitado, producto, StringComparison.OrdinalIgnoreCase)).ToList();
+                    break;
+
+                case 4:
+                    Console.WriteLine("\nTipos de entrega disponibles:");
+                    foreach (var entregaValor in Enum.GetValues<tipoEntrega>())
+                    {
+                        Console.WriteLine($"- {entregaValor}");
+                    }
+                    Console.Write("Ingrese el tipo de entrega: ");
+                    string entregaEntrada = (Console.ReadLine() ?? string.Empty).Trim();
+
+                    if (!Enum.TryParse<tipoEntrega>(entregaEntrada, ignoreCase: true, out var entregaEnum))
+                    {
+                        Console.WriteLine("\nTipo de entrega no válido.");
+                        return;
+                    }
+
+                    resultado = pedidos.Where(p => p.tipoEntrega == entregaEnum).ToList();
+                    break;
+
+                default:
+                    Console.WriteLine("\nCriterio no válido.");
+                    return;
+            }
+
+            if (resultado.Count == 0)
+            {
+                Console.WriteLine("\nNo se encontraron pedidos con ese criterio.");
+                return;
+            }
+
+            Console.WriteLine("\nRESULTADO DEL FILTRO");
+            foreach (var pedido in resultado)
+            {
+                MostrarDetallePedido(pedido);
+            }
+        }
+
+        public static double CalcularTotalPedido(Pedido pedido)
+        {
+            double subtotal = pedido.cantidad * pedido.precioUnitario;
+            double costoEntrega = pedido.tipoEntrega switch
+            {
+                tipoEntrega.RetiroEnTienda => 0,
+                tipoEntrega.EntregaEstandar => 2.50,
+                tipoEntrega.EntregaRapida => 5.00,
+            };
+
+            return subtotal + costoEntrega;
+        }
+
+        public static void MostrarDetallePedido(Pedido pedido)
+        {
+            double subtotal = pedido.cantidad * pedido.precioUnitario;
+            double costoEntrega = pedido.tipoEntrega switch
+            {
+                tipoEntrega.RetiroEnTienda => 0,
+                tipoEntrega.EntregaEstandar => 2.50,
+                tipoEntrega.EntregaRapida => 5.00,                
+            };
+
+            Console.WriteLine($"\nCódigo: {pedido.codigoPedido}");
+            Console.WriteLine($"Cliente: {pedido.nombreCliente}");
+            Console.WriteLine($"Producto: {pedido.productoSolicitado}");
+            Console.WriteLine($"Cantidad: {pedido.cantidad}");
+            Console.WriteLine($"Precio unitario: ${pedido.precioUnitario:F2}");
+            Console.WriteLine($"Tipo de entrega: {pedido.tipoEntrega}");
+            Console.WriteLine($"Estado: {pedido.estadoPedido}");
+            Console.WriteLine($"Fecha: {pedido.fechaPedido:dd/MM/yyyy}");
+            Console.WriteLine($"Subtotal: ${subtotal:F2}");
+            Console.WriteLine($"Costo de entrega: ${costoEntrega:F2}");
+            Console.WriteLine($"Total: ${subtotal + costoEntrega:F2}");
+            Console.WriteLine("----------------------------------------");
         }
     }
 }
