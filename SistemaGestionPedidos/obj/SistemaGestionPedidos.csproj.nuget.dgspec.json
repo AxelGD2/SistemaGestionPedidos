@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ESTUDIANTE\\Documents\\ProyectosCASATIC\\Modulo-4\\SistemaGestionPedidos\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj": {}
+    "C:\\Users\\jonat\\Desktop\\Nueva carpeta\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ESTUDIANTE\\Documents\\ProyectosCASATIC\\Modulo-4\\SistemaGestionPedidos\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj": {
+    "C:\\Users\\jonat\\Desktop\\Nueva carpeta\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESTUDIANTE\\Documents\\ProyectosCASATIC\\Modulo-4\\SistemaGestionPedidos\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj",
+        "projectUniqueName": "C:\\Users\\jonat\\Desktop\\Nueva carpeta\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj",
         "projectName": "SistemaGestionPedidos",
-        "projectPath": "C:\\Users\\ESTUDIANTE\\Documents\\ProyectosCASATIC\\Modulo-4\\SistemaGestionPedidos\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj",
-        "packagesPath": "C:\\Users\\ESTUDIANTE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESTUDIANTE\\Documents\\ProyectosCASATIC\\Modulo-4\\SistemaGestionPedidos\\SistemaGestionPedidos\\obj\\",
+        "projectPath": "C:\\Users\\jonat\\Desktop\\Nueva carpeta\\SistemaGestionPedidos\\SistemaGestionPedidos.csproj",
+        "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jonat\\Desktop\\Nueva carpeta\\SistemaGestionPedidos\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ESTUDIANTE\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -61,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
