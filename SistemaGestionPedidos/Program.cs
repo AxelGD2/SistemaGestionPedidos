@@ -7,6 +7,7 @@ namespace SistemaGestionPedidos
         public static void Main(string[] args)
         {
             bool menuCorriendo = true;
+            List<Pedido> pedidos = new List<Pedido>();
 
             while(menuCorriendo)
             {
