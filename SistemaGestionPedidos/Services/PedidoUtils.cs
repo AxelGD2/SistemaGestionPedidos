@@ -13,6 +13,7 @@ namespace SistemaGestionPedidos.Services
                 tipoEntrega.RetiroEnTienda => 0,
                 tipoEntrega.EntregaEstandar => 2.50,
                 tipoEntrega.EntregaRapida => 5.00,
+                _ => 0,
             };
 
             return subtotal + costoEntrega;
@@ -26,6 +27,7 @@ namespace SistemaGestionPedidos.Services
                 tipoEntrega.RetiroEnTienda => 0,
                 tipoEntrega.EntregaEstandar => 2.50,
                 tipoEntrega.EntregaRapida => 5.00,
+                _ => 0,
             };
 
             Console.WriteLine($"\nCódigo: {pedido.codigoPedido}");

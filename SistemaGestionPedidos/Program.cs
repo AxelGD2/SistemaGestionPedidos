@@ -1,8 +1,5 @@
-﻿using System.IO;
-using System.Security.Cryptography;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using SistemaGestionPedidos.Services;
 
 namespace SistemaGestionPedidos
@@ -13,7 +10,6 @@ namespace SistemaGestionPedidos
         {
             bool menuCorriendo = true;
             List<Pedido> pedidos = new List<Pedido>();
-            double total = 0;
 
             while (menuCorriendo)
             {
@@ -34,7 +30,13 @@ namespace SistemaGestionPedidos
                 try
                 {
                     Console.Write("Escoja una opción: ");
-                    int opcion = int.Parse(Console.ReadLine());
+                    string entrada = Console.ReadLine() ?? string.Empty;
+
+                    if (!int.TryParse(entrada.Trim(), out int opcion))
+                    {
+                        Console.WriteLine("\nFormato no válido");
+                        continue;
+                    }
 
                     switch (opcion)
                     {
@@ -59,7 +61,7 @@ namespace SistemaGestionPedidos
                             break;
 
                         case 6:
-                            PedidoService.EliminarPedido(ref pedidos, ref total);
+                            PedidoService.EliminarPedido(ref pedidos);
                             break;
 
                         case 7:
@@ -67,7 +69,7 @@ namespace SistemaGestionPedidos
                             break;
 
                         case 8:
-                            Console.WriteLine("\nOpción aún no implementada.");
+                            PedidoService.MostrarEstadisticas(pedidos);
                             break;
 
                         case 9:
@@ -84,9 +86,9 @@ namespace SistemaGestionPedidos
                             break;
                     }
                 }
-                catch (FormatException)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("\nFormato no válido");
+                    Console.WriteLine($"\nError: {ex.Message}");
                 }
             }
         }
