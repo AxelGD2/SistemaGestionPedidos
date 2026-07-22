@@ -1,7 +1,5 @@
 ﻿using System.IO;
 
-
-
 namespace SistemaGestionPedidos
 {
     public class Program
@@ -10,7 +8,6 @@ namespace SistemaGestionPedidos
         {
             bool menuCorriendo = true;
             List<Pedido> pedidos = new List<Pedido>();
-            double Total = 0;
 
             while(menuCorriendo)
             {
@@ -36,7 +33,7 @@ namespace SistemaGestionPedidos
                     switch (opcion)
                     {
                         case 1:
-                            RegistrarPedidos(ref pedidos, ref Total);
+                            RegistrarPedidos(ref pedidos);
                             break;
                         
                         case 2:
@@ -81,10 +78,9 @@ namespace SistemaGestionPedidos
             }
         }
 
-        public static void RegistrarPedidos(ref List<Pedido> pedidos, ref double total)
+        public static void RegistrarPedidos(ref List<Pedido> pedidos)
         {
-            Pedido pedido = new Pedido();
-            double subtotal = 0;      
+            Pedido pedido = new Pedido();    
 
             Console.Write("\nIngrese el código del pedido: ");
             string codigo = Console.ReadLine().Trim();
@@ -144,7 +140,6 @@ namespace SistemaGestionPedidos
                     precioUnitario = double.Parse(Console.ReadLine().Trim());
                 }
 
-                subtotal = cantidad + precioUnitario;
                 pedido.cantidad = cantidad;
                 pedido.precioUnitario = precioUnitario;
 
@@ -159,17 +154,15 @@ namespace SistemaGestionPedidos
                 switch (opcionEntrega)
                 {
                     case 1:
-                        pedido.tipoEntrega = "Retiro en tienda";
+                        pedido.tipoEntrega = tipoEntrega.RetiroEnTienda;
                         break;
 
                     case 2:
-                        pedido.tipoEntrega = "Entrega estándar";
-                        subtotal += 2.50;
+                        pedido.tipoEntrega = tipoEntrega.EntregaEstandar;
                         break;
 
                     case 3:
-                        pedido.tipoEntrega = "Entrega rápida";
-                        subtotal += 5.0;
+                        pedido.tipoEntrega = tipoEntrega.EntregaRapida;
                         break;
 
                     default:
@@ -184,8 +177,7 @@ namespace SistemaGestionPedidos
             }                  
 
             pedido.fechaPedido = DateTime.Now;
-            pedido.estadoPedido = "Pendiente";
-            total += subtotal;
+            pedido.estadoPedido = EstadoPedido.Pendiente;
 
             pedidos.Add(pedido);      
 
